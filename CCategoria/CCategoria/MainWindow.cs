@@ -27,25 +27,38 @@ public partial class MainWindow : Gtk.Window
         App.Instance.Connection.Open();
 
 
-        // LEEMOS DE LA TABLA
-        IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
-		dbCommand.CommandText = "select * from categoria order by id";
-		IDataReader dataReader = dbCommand.ExecuteReader();
+        fillListStore(listStore);
 
-        // LEEMOS y AÑADIMOS
-        while (dataReader.Read())
-        {
-            listStore.AppendValues(dataReader["id"].ToString(), dataReader["nombre"]);
-        }
-		dataReader.Close();
-
+       
+        //BOTON NUEVO
         newAction.Activated += delegate
         {
             new CategoriaWindow();
         };
 
-		
+        //BOTON REFRESH
+        refreshAction.Activated += delegate {
+			listStore.Clear();
+
+            fillListStore(listStore);
+        };
+        		
     }
+
+    //METODO LEER Y RELLENAR LA TABLA
+    private void fillListStore(ListStore listStore){
+		IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
+		dbCommand.CommandText = "select * from categoria order by id";
+		IDataReader dataReader = dbCommand.ExecuteReader();
+
+		while (dataReader.Read())
+		{
+			listStore.AppendValues(dataReader["id"].ToString(), dataReader["nombre"]);
+		}
+		dataReader.Close();
+
+	}
+
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
     {
