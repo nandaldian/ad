@@ -11,6 +11,8 @@ public partial class MainWindow : Gtk.Window
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
+        Title = "Categoria";
+        deleteAction.Sensitive = false;
 
         //AÑADIMOS COLUMNAS AL TREEVIEW
         treeView.AppendColumn("id", new CellRendererText(), "text", 0);
@@ -29,6 +31,12 @@ public partial class MainWindow : Gtk.Window
 
         fillListStore(listStore);
 
+        treeView.Selection.Changed += delegate {
+            bool hasSelected = treeView.Selection.CountSelectedRows() > 0;
+            deleteAction.Sensitive = hasSelected;
+        };
+
+
        
         //BOTON NUEVO
         newAction.Activated += delegate
@@ -42,7 +50,25 @@ public partial class MainWindow : Gtk.Window
 
             fillListStore(listStore);
         };
+
+        deleteAction.Activated += delegate {
+           if (WindowHelper.Confirm(this, "¿Quieres eliminar el registro?")){
+                IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
+				dbCommand.CommandText = "delete from categoria where id= @id";
+                DbCommandHelper.AddParameter(dbCommand, "id", getId());
+				dbCommand.ExecuteNonQuery();
+				
+            }
+                
+            
+        };
         		
+    }
+
+    private object getId(){
+		TreeIter treeIter;
+		treeView.Selection.GetSelected(out treeIter);
+        return treeView.Model.GetValue(treeIter, 0);
     }
 
     //METODO LEER Y RELLENAR LA TABLA

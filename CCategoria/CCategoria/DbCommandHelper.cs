@@ -13,6 +13,8 @@ namespace CCategoria
             dbDataParameter.Value = value;
 			dbCommand.Parameters.Add(dbDataParameter);
 		}
+		
+
             
     }
 }

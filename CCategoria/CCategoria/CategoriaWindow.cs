@@ -15,10 +15,6 @@ namespace CCategoria
                 IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
                 dbCommand.CommandText = "insert into categoria (nombre) values (@nombre)";
                 DbCommandHelper.AddParameter(dbCommand, "nombre", nombre);
-                //IDbDataParameter dbDataParameter = dbCommand.CreateParameter();
-                //dbDataParameter.ParameterName = "nombre";
-                //dbDataParameter.Value = nombre;
-                //dbCommand.Parameters.Add(dbDataParameter);
                 dbCommand.ExecuteNonQuery();
                 Destroy();
             };
