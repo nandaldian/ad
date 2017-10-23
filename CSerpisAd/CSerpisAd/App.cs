@@ -2,7 +2,8 @@
 using System;
 
 
-namespace CCategoria
+namespace Serpis.Ad
+                
 {
     public class App
     {
