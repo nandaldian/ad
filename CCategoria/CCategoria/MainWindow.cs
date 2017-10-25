@@ -13,6 +13,7 @@ public partial class MainWindow : Gtk.Window
         Build();
         Title = "Categoria";
         deleteAction.Sensitive = false;
+        editAction.Sensitive = false;
 
         //AÑADIMOS COLUMNAS AL TREEVIEW
         treeView.AppendColumn("id", new CellRendererText(), "text", 0);
@@ -34,17 +35,23 @@ public partial class MainWindow : Gtk.Window
         treeView.Selection.Changed += delegate {
             bool hasSelected = treeView.Selection.CountSelectedRows() > 0;
             deleteAction.Sensitive = hasSelected;
+            editAction.Sensitive = hasSelected;
         };
 
 
        
-        //BOTON NUEVO
+
         newAction.Activated += delegate
         {
             new CategoriaWindow();
         };
 
-        //BOTON REFRESH
+        editAction.Activated += delegate {
+            object id = getId();
+            new CategoriaWindow(id);
+        };
+
+
         refreshAction.Activated += delegate {
 			listStore.Clear();
 
