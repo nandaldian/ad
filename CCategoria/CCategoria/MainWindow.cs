@@ -43,6 +43,7 @@ public partial class MainWindow : Gtk.Window
 
         newAction.Activated += delegate
         {
+            
             new CategoriaWindow();
         };
 
@@ -60,10 +61,8 @@ public partial class MainWindow : Gtk.Window
 
         deleteAction.Activated += delegate {
            if (WindowHelper.Confirm(this, "¿Quieres eliminar el registro?")){
-                IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
-				dbCommand.CommandText = "delete from categoria where id= @id";
-                DbCommandHelper.AddParameter(dbCommand, "id", getId());
-				dbCommand.ExecuteNonQuery();
+                object id = getId();
+                CategoriaDao.Delete(id);
 				
             }
                 
