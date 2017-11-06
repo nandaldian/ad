@@ -5,6 +5,7 @@ namespace CCategoria
 {
     public class CategoriaDao
     {
+        public const string SelectAll = "select * from categoria order by id";
         public static Categoria Load(object id)
         {
 
@@ -40,9 +41,7 @@ namespace CCategoria
 			{
 				update(categoria);
 			}
-
-
-		}
+        }
 
         private static void insert(Categoria categoria)
 		{
@@ -62,8 +61,6 @@ namespace CCategoria
             DbCommandHelper.AddParameter(dbCommand, "nombre", categoria.Nombre);
 			dbCommand.ExecuteNonQuery();
 		}
-
-
     }   
 }
 
