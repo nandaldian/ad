@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{BCDC358F-59E1-45C4-8DF2-4FF72BC24E40}</ProjectGuid>
+    <ProjectGuid>{52993DE4-6DCB-491D-AD8F-3316F5A40220}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CCategoria</RootNamespace>
-    <AssemblyName>CCategoria</AssemblyName>
+    <RootNamespace>CArticulo</RootNamespace>
+    <AssemblyName>CArticulo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -48,14 +48,11 @@
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="System.Data" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\mysql\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="CSerpisAd">
-      <HintPath>..\..\CSerpisAd\CSerpisAd\bin\Debug\CSerpisAd.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\mysql\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\mysql\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\ad\CSerpisAd\CSerpisAd\bin\Debug\CSerpisAd.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -68,13 +65,11 @@
     <Compile Include="MainWindow.cs" />
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="CategoriaWindow.cs" />
-    <Compile Include="gtk-gui\CCategoria.CategoriaWindow.cs" />
-    <Compile Include="Categoria.cs" />
-    <Compile Include="CategoriaDao.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Articulo.cs" />
+    <Compile Include="ArticuloDao.cs" />
+    <Compile Include="ArticuloWindow.cs" />
+    <Compile Include="gtk-gui\CArticulo.ArticuloWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
