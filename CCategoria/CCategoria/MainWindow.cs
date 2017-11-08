@@ -7,7 +7,6 @@ using Serpis.Ad;
 
 public partial class MainWindow : Gtk.Window
 {
-    
 	public MainWindow() : base(Gtk.WindowType.Toplevel)
 	{
         Build();
@@ -33,8 +32,8 @@ public partial class MainWindow : Gtk.Window
 		};
         		
 		editAction.Activated += delegate {
-			object id = getId();
-			Categoria categoria = CategoriaDao.Load(id);
+            object id = TreeViewHelper.getId(treeView);
+            Categoria categoria = CategoriaDao.Load(id);
 			new CategoriaWindow(categoria);
 		};
 
@@ -46,17 +45,10 @@ public partial class MainWindow : Gtk.Window
 		deleteAction.Activated += delegate {
 			if (WindowHelper.Confirm(this, "¿Quieres eliminar el registro?"))
 			{
-				object id = getId();
+				object id = TreeViewHelper.getId(treeView);
 				CategoriaDao.Delete(id);
 			}
 		};
-	}
-
-	private object getId()
-	{
-		TreeIter treeIter;
-		treeView.Selection.GetSelected(out treeIter);
-		return treeView.Model.GetValue(treeIter, 0);
 	}
 
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)
