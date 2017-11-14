@@ -56,5 +56,6 @@ public partial class MainWindow : Gtk.Window
     {
         Application.Quit();
         a.RetVal = true;
+        App.Instance.Connection.Close();
     }
 }

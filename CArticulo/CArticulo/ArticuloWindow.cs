@@ -22,12 +22,8 @@ namespace CArticulo
 
                 Destroy();
 
-			};
+            };
 
 		}
-
-		
-	}
-
-
+    }
 }
