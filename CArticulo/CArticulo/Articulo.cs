@@ -23,6 +23,6 @@ namespace CArticulo
 			set { nombre = value; }
 		}
 		public decimal Precio { get; set; }
-		public long Categoria { get; set; }
+		public long? Categoria { get; set; }
     }
 }

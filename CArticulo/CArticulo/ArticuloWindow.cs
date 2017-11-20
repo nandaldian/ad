@@ -21,9 +21,7 @@ namespace CArticulo
 				ArticuloDao.Save(articulo);
 
                 Destroy();
-
             };
-
 		}
     }
 }
