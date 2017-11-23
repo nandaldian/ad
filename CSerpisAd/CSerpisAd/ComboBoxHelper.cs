@@ -47,5 +47,7 @@ namespace Serpis.Ad
             comboBox.GetActiveIter(out treeIter);
             return comboBox.Model.GetValue(treeIter, 0);
         }
+
+
     }
 }
