@@ -21,7 +21,7 @@ public class Pedido {
 	private Timestamp fecha;
 	
 	@ManyToOne
-	@JoinColumn (name = "cliente_id")
+	@JoinColumn (name = "cliente")
 	private Cliente cliente;
 	
 }
