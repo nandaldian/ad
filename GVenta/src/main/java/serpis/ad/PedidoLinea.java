@@ -20,7 +20,7 @@ public class PedidoLinea {
 	private Pedido pedido;
 	
 	@ManyToOne
-	@JoinColumn (name = "articulo")
+	@JoinColumn (name = "artizculo")
 	private Articulo articulo;
 	
 	private BigDecimal precio;
@@ -41,7 +41,8 @@ public class PedidoLinea {
 		return pedido;
 	}
 
-	public void setPedido(Pedido pedido) {
+	//solo visible para package
+	void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 
@@ -51,6 +52,9 @@ public class PedidoLinea {
 
 	public void setArticulo(Articulo articulo) {
 		this.articulo = articulo;
+		precio=articulo.getPrecio();
+		unidades=new BigDecimal(1);
+		total=unidades.multiply(precio);
 	}
 
 	public BigDecimal getPrecio() {
