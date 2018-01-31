@@ -63,6 +63,7 @@ public class PedidoLinea {
 
 	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
+		total=unidades.multiply(precio);
 	}
 
 	public BigDecimal getUnidades() {
@@ -71,13 +72,11 @@ public class PedidoLinea {
 
 	public void setUnidades(BigDecimal unidades) {
 		this.unidades = unidades;
+		total=unidades.multiply(precio);
 	}
 
+	// no setter
 	public BigDecimal getTotal() {
 		return total;
-	}
-
-	public void setTotal(BigDecimal total) {
-		this.total = total;
 	}
 }
